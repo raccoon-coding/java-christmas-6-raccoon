@@ -1,6 +1,7 @@
 package christmas.model.mainFood;
 
 import christmas.model.Menu;
+import christmas.model.drink.DrinkEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,14 @@ public class MainFood {
 
     public List<Menu> getMainFoods() {
         return List.copyOf(mainFoods);
+    }
+
+    public static void setFixDiscount(int newFixDiscount) {
+        MainFoodEntry.setFixDiscount(newFixDiscount);
+    }
+
+    public static void setRateDiscount(float newRateDiscount) {
+        MainFoodEntry.setRateDiscount(newRateDiscount);
     }
 
     private void mainFoodsInit() {

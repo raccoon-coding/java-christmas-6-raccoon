@@ -1,6 +1,7 @@
 package christmas.model.dessert;
 
 import christmas.model.Menu;
+import christmas.model.appetizer.AppetizerEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,14 @@ public class Dessert {
 
     public List<Menu> getDesserts() {
         return List.copyOf(desserts);
+    }
+
+    public static void setFixDiscount(int newFixDiscount) {
+        DessertEntry.setFixDiscount(newFixDiscount);
+    }
+
+    public static void setRateDiscount(float newRateDiscount) {
+        DessertEntry.setRateDiscount(newRateDiscount);
     }
 
     private void dessertsInit() {

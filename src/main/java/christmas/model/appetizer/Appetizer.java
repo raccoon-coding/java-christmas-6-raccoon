@@ -10,7 +10,7 @@ public class Appetizer {
 
     public Appetizer() {
         appetizers = new ArrayList<>();
-
+        appetizersInit();
     }
 
     public Menu setAppetizers(String menuName, double price) {
@@ -19,6 +19,14 @@ public class Appetizer {
 
     public List<Menu> getAppetizers() {
         return List.copyOf(appetizers);
+    }
+
+    public static void setFixDiscount(int newFixDiscount) {
+        AppetizerEntry.setFixDiscount(newFixDiscount);
+    }
+
+    public static void setRateDiscount(float newRateDiscount) {
+        AppetizerEntry.setRateDiscount(newRateDiscount);
     }
 
     private void appetizersInit() {

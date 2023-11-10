@@ -1,12 +1,14 @@
 package christmas.controller;
 
+import christmas.service.OrderInit;
+
 public class Order {
     private static Order instance;
 
     private Order() {
     }
 
-    public static Order getInstance() {
+    public static synchronized Order getInstance() {
         if (instance == null) {
             instance = new Order();
         }
@@ -18,6 +20,7 @@ public class Order {
     }
 
     private void orderInitService(){
-
+        OrderInit orderInit = OrderInit.getInstance();
+        orderInit.run();
     }
 }

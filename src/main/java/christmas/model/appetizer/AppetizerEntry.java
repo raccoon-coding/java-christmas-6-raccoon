@@ -6,11 +6,22 @@ public class AppetizerEntry implements Menu {
     private String name;
     private double price;
     private int quantity;
+    private static float rateDiscount;
+    private static int fixDiscount;
+
 
     public AppetizerEntry(String name, double price) {
         this.name = name;
         this.price = price;
         this.quantity = 0;
+    }
+
+    public static void setFixDiscount(int newFixDiscount) {
+        fixDiscount = newFixDiscount;
+    }
+
+    public static void setRateDiscount(float newRateDiscount) {
+        rateDiscount = newRateDiscount;
     }
 
     @Override
@@ -29,7 +40,18 @@ public class AppetizerEntry implements Menu {
     }
 
     @Override
+    public float getRateDiscount() {
+        return rateDiscount;
+    }
+
+    @Override
+    public int getFixDiscount() {
+        return fixDiscount;
+    }
+
+    @Override
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

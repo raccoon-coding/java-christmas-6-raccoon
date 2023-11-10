@@ -1,16 +1,13 @@
 package christmas.service;
 
+import christmas.service.validation.MenuValidation;
+import christmas.view.InputView;
+
 public class MenuInit {
-    private static MenuInit instance;
-
-    private MenuInit() {
-
-    }
-
-    public static MenuInit getInstance() {
-        if (instance == null) {
-            instance = new MenuInit();
-        }
-        return instance;
+    public void run() {
+        InputView inputView = new InputView();
+        String menus = inputView.enterMenu();
+        MenuValidation menuValidation = new MenuValidation();
+        menuValidation.validateMenu(menus);
     }
 }
