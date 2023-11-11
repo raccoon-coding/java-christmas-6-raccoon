@@ -7,6 +7,7 @@ import christmas.service.validation.DataValidation;
 
 public class ConvertDate {
     private static final int SEVEN_DAY = 7;
+    public static final int DAYS_FACTOR = 3;
     public void convertDate(String date) {
         DataValidation dataValidation = new DataValidation();
         int nDay = dataValidation.convertInt(date);
@@ -15,7 +16,7 @@ public class ConvertDate {
         saveDays(day, nDay);
     }
     private String convertDay(int nDay) {
-        int index = nDay % SEVEN_DAY;
+        int index = (nDay +  + DAYS_FACTOR) % SEVEN_DAY;
         return SevenDays.returnDays(index);
     }
 

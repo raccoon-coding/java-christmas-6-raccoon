@@ -10,11 +10,13 @@ public class SaveDiscount {
         Date date = Date.getInstance();
         String day = date.getDay();
         int nDays = date.getnDays();
+        discountWeek(day);
+        saveDiscount(day, nDays);
+    }
+
+    private void discountWeek(String day){
         discountWeekday(day);
         discountWeekend(day);
-        int christmasDiscount = discountChristmas(nDays);
-        int specialDiscount = specialDiscount(day, nDays);
-        saveDiscount(christmasDiscount, specialDiscount);
     }
 
     private void discountWeekday(String day) {
@@ -31,6 +33,13 @@ public class SaveDiscount {
         }
     }
 
+    private void saveDiscount(String day, int nDays) {
+        int christmasDiscount = discountChristmas(nDays);
+        int specialDiscount = specialDiscount(day, nDays);
+        Date date = Date.getInstance();
+        date.setDiscount(christmasDiscount, specialDiscount);
+    }
+
     private int discountChristmas(int nDays){
         if(nDays > 25){
             return 0;
@@ -43,10 +52,5 @@ public class SaveDiscount {
             return 1000;
         }
         return 0;
-    }
-
-    private void saveDiscount(int christmasDiscount, int specialDiscount) {
-        Date date = Date.getInstance();
-        date.setDiscount(christmasDiscount, specialDiscount);
     }
 }

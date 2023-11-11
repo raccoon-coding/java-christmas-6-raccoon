@@ -15,16 +15,16 @@ public class SetFixDiscount {
 
     public void setMainFood(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setAppetizerDiscount(discount, rateDiscount);
+        menuManager.setMainFoodDiscount(discount, rateDiscount);
     }
 
     public void setDrink(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setAppetizerDiscount(discount, rateDiscount);
+        menuManager.setDrinkDiscount(discount, rateDiscount);
     }
 
     public void setDessert(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setAppetizerDiscount(discount, rateDiscount);
+        menuManager.setDessertDiscount(discount, rateDiscount);
     }
 }

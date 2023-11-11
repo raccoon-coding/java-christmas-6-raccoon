@@ -10,7 +10,6 @@ public enum SevenDays {
     Sunday("일요일");
 
     private final String value;
-    public static final int DAYS_FACTOR = 4;
 
     SevenDays(String value){
         this.value = value;
@@ -24,6 +23,6 @@ public enum SevenDays {
         if(index < 0 || index >= SevenDays.values().length){
             return null;
         }
-        return SevenDays.values()[index + DAYS_FACTOR].getValue();
+        return SevenDays.values()[index].getValue();
     }
 }

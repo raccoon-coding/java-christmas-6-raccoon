@@ -1,6 +1,8 @@
 package christmas.controller;
 
-import christmas.service.OrderInit;
+import christmas.service.DateInit;
+import christmas.service.DiscountCalculate;
+import christmas.service.MenuInit;
 
 public class Order {
     private static Order instance;
@@ -20,7 +22,11 @@ public class Order {
     }
 
     private void orderInitService(){
-        OrderInit orderInit = OrderInit.getInstance();
-        orderInit.run();
+        DateInit dateInit = DateInit.getInstance();
+        dateInit.run();
+        MenuInit menuInit = MenuInit.getInstance();
+        menuInit.run();
+        DiscountCalculate discountCalculate = DiscountCalculate.getInstance();
+        discountCalculate.run();
     }
 }
