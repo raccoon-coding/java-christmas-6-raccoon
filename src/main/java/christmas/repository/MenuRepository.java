@@ -7,6 +7,11 @@ import christmas.model.dessert.Dessert;
 import christmas.model.drink.Drink;
 import christmas.model.mainFood.MainFood;
 
+import static christmas.constants.MenuConstant.APPETIZER;
+import static christmas.constants.MenuConstant.MAIN_FOOD;
+import static christmas.constants.MenuConstant.DESSERT;
+import static christmas.constants.MenuConstant.DRINK;
+
 public class MenuRepository {
     public void addMenu(String foodType, String menuName, int price) {
         addAppetizer(foodType, menuName, price);
@@ -16,25 +21,25 @@ public class MenuRepository {
     }
 
     private void addAppetizer(String foodType, String menuName, int price) {
-        if(foodType.equals("Appetizer")){
+        if(foodType.equals(APPETIZER)){
             saveNewMenu(new Appetizer().setAppetizers(menuName, price));
         }
     }
 
     private void addMainFood(String foodType, String menuName, int price) {
-        if(foodType.equals("MainFood")){
+        if(foodType.equals(MAIN_FOOD)){
             saveNewMenu(new MainFood().setMainFoods(menuName, price));
         }
     }
 
     private void addDrink(String foodType, String menuName, int price) {
-        if(foodType.equals("Drink")){
+        if(foodType.equals(DESSERT)){
             saveNewMenu(new Drink().setDrinks(menuName, price));
         }
     }
 
     private void addDessert(String foodType, String menuName, int price) {
-        if(foodType.equals("Dessert")){
+        if(foodType.equals(DRINK)){
             saveNewMenu(new Dessert().setDesserts(menuName, price));
         }
     }

@@ -10,10 +10,21 @@ import christmas.view.OutputView;
 
 import java.util.Objects;
 
+import static christmas.constants.DiscountConstant.CHRISTMAS;
+import static christmas.constants.DiscountConstant.FRIDAY;
+import static christmas.constants.DiscountConstant.SATURDAY;
+import static christmas.constants.DiscountConstant.SPECIAL;
+import static christmas.constants.DiscountConstant.WEEKDAY;
+import static christmas.constants.DiscountConstant.WEEKEND;
+
 public class DiscountCalculate {
     private static DiscountCalculate instance;
-
-    private DiscountCalculate() {}
+    SaveDiscount saveDiscount;
+    EventBadge eventBadge;
+    private DiscountCalculate() {
+        this.saveDiscount = new SaveDiscount();
+        this.eventBadge = new EventBadge();
+    }
 
     public static synchronized DiscountCalculate getInstance() {
         if (instance == null) {
@@ -23,67 +34,67 @@ public class DiscountCalculate {
     }
 
     public void run () {
-        SaveDiscount saveDiscount = new SaveDiscount();
         saveDiscount.saveDiscount();
-        double totalDiscount = 0;
-        totalDiscount = serviceDiscount() + christmasDiscount() + weekdayDiscount() + weekendDiscount();
+        Date date = Date.getInstance();
         TotalPrice totalPrice = TotalPrice.getInstance();
-        totalPrice.setTotalDiscount(totalDiscount);
-        EventBadge eventBadge = new EventBadge();
-        eventBadge.eventBadge(totalDiscount);
-        OutputView outputView = new OutputView();
+        calculateDiscount(date, totalPrice);
+        eventBadge.eventBadge();
+        orderView();
+    }
+
+    private void calculateDiscount(Date date, TotalPrice totalPrice) {
+        serviceDiscount(date, totalPrice);
+        christmasDiscount(date, totalPrice);
+        weekdayDiscount(date, totalPrice);
+        weekendDiscount(date, totalPrice);
+    }
+
+    private void orderView() {
+        OutputView outputView = OutputView.getInstance();
         outputView.totalDiscount();
     }
 
-    private int serviceDiscount() {
-        Date date = Date.getInstance();
+    private void serviceDiscount(Date date, TotalPrice totalPrice) {
         int discount = date.getSpecialDiscount();
         if(discount > 0){
-            TotalPrice totalPrice = TotalPrice.getInstance();
-            totalPrice.setDiscount("특별 할인", discount);
+            totalPrice.setDiscount(SPECIAL, discount);
         }
-        return discount;
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + discount);
     }
 
-    private int christmasDiscount() {
-        Date date = Date.getInstance();
+    private void christmasDiscount(Date date, TotalPrice totalPrice) {
         int discount = date.getChristmasDiscount();
         if(discount > 0){
-            TotalPrice totalPrice = TotalPrice.getInstance();
-            totalPrice.setDiscount("크리스마스 디데이 할인", discount);
+            totalPrice.setDiscount(CHRISTMAS, discount);
         }
-        return discount;
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + discount);
     }
 
-    private int weekdayDiscount(){
-        Date date = Date.getInstance();
+    private void weekdayDiscount(Date date, TotalPrice totalPrice){
         int weekdayDiscount = 0;
-        if(!Objects.equals(date.getDay(),"금요일") && !Objects.equals(date.getDay(),"토요일")){
+        if(!Objects.equals(date.getDay(),FRIDAY) && !Objects.equals(date.getDay(),SATURDAY)){
             GetDessert getDessert = new GetDessert();
             for(Menu menu : getDessert.getDessert()){
                 weekdayDiscount += menu.getQuantity() * menu.getFixDiscount();
             }
         }
         if(weekdayDiscount > 0){
-            TotalPrice totalPrice = TotalPrice.getInstance();
-            totalPrice.setDiscount("평일 할인", weekdayDiscount);
+            totalPrice.setDiscount(WEEKDAY, weekdayDiscount);
         }
-        return weekdayDiscount;
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + weekdayDiscount);
     }
 
-    private int weekendDiscount(){
-        Date date = Date.getInstance();
+    private void weekendDiscount(Date date, TotalPrice totalPrice){
         int weekendDiscount = 0;
-        if(Objects.equals(date.getDay(),"금요일") || Objects.equals(date.getDay(),"토요일")){
+        if(Objects.equals(date.getDay(),FRIDAY) || Objects.equals(date.getDay(),SATURDAY)){
             GetMainFood getMainFood = new GetMainFood();
             for(Menu menu : getMainFood.getMainFood()){
                 weekendDiscount += menu.getQuantity() * menu.getFixDiscount();
             }
         }
         if(weekendDiscount > 0){
-            TotalPrice totalPrice = TotalPrice.getInstance();
-            totalPrice.setDiscount("주말 할인", weekendDiscount);
+            totalPrice.setDiscount(WEEKEND, weekendDiscount);
         }
-        return weekendDiscount;
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + weekendDiscount);
     }
 }

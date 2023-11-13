@@ -5,6 +5,15 @@ import christmas.repository.SetFixDiscount;
 
 import java.util.Objects;
 
+import static christmas.constants.CovertConstant.IS_EMPTY;
+import static christmas.constants.DiscountConstant.WEEK_DISCOUNT;
+import static christmas.constants.DiscountConstant.FRIDAY;
+import static christmas.constants.DiscountConstant.SATURDAY;
+import static christmas.constants.DiscountConstant.CHRISTMAS_DAY;
+import static christmas.constants.DiscountConstant.CHRISTMAS_DISCOUNT;
+import static christmas.constants.DiscountConstant.SUNDAY;
+import static christmas.constants.DiscountConstant.SPECIAL_DISCOUNT;
+
 public class SaveDiscount {
     public void saveDiscount() {
         Date date = Date.getInstance();
@@ -20,16 +29,16 @@ public class SaveDiscount {
     }
 
     private void discountWeekday(String day) {
-        if(!Objects.equals(day, "금요일") && !Objects.equals(day, "토요일")){
+        if(!Objects.equals(day, FRIDAY) && !Objects.equals(day, SATURDAY)){
             SetFixDiscount setFixDiscount = new SetFixDiscount();
-            setFixDiscount.setDessert(2023);
+            setFixDiscount.setDessert(WEEK_DISCOUNT);
         }
     }
 
     private void discountWeekend(String day) {
-        if (Objects.equals(day, "금요일") || Objects.equals(day, "토요일")) {
+        if (Objects.equals(day, FRIDAY) || Objects.equals(day, SATURDAY)) {
             SetFixDiscount setFixDiscount = new SetFixDiscount();
-            setFixDiscount.setMainFood(2023);
+            setFixDiscount.setMainFood(WEEK_DISCOUNT);
         }
     }
 
@@ -41,16 +50,16 @@ public class SaveDiscount {
     }
 
     private int discountChristmas(int nDays){
-        if(nDays > 25){
-            return 0;
+        if(nDays > CHRISTMAS_DAY){
+            return IS_EMPTY;
         }
-        return (nDays - 1) * 100 + 1000;
+        return (nDays - 1) * CHRISTMAS_DISCOUNT + SPECIAL_DISCOUNT;
     }
 
     private int specialDiscount(String day, int nDays) {
-        if(Objects.equals(day, "일요일") || Objects.equals(nDays, 25)){
-            return 1000;
+        if(Objects.equals(day, SUNDAY) || Objects.equals(nDays, CHRISTMAS_DAY)){
+            return SPECIAL_DISCOUNT;
         }
-        return 0;
+        return IS_EMPTY;
     }
 }

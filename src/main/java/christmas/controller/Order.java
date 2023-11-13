@@ -18,14 +18,22 @@ public class Order {
     }
 
     public void run() {
-        orderInitService();
+        enterDate();
+        enterMenu();
+        orderCalculate();
     }
 
-    private void orderInitService(){
+    private void enterDate(){
         DateInit dateInit = DateInit.getInstance();
         dateInit.run();
+    }
+
+    private void enterMenu() {
         MenuInit menuInit = MenuInit.getInstance();
         menuInit.run();
+    }
+
+    private void orderCalculate() {
         DiscountCalculate discountCalculate = DiscountCalculate.getInstance();
         discountCalculate.run();
     }

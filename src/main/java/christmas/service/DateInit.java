@@ -17,7 +17,7 @@ public class DateInit {
     }
 
     public void run() {
-        InputView inputView = new InputView();
+        InputView inputView = InputView.getInstance();
         String date = inputView.readDate();
         ConvertDate convertDate = new ConvertDate();
         convertDate.convertDate(date);

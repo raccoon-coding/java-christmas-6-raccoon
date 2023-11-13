@@ -15,4 +15,8 @@ public class DataValidation {
     public void validateDate(int date) {
 
     }
+
+    public void validateDay(String day){
+
+    }
 }

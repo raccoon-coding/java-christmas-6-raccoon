@@ -7,8 +7,11 @@ public class TotalPrice {
     private Map<String, Integer> discount = new HashMap<>();
     private double totalDiscount;
     private double totalPrice;
+    private String badge;
 
     private TotalPrice() {
+        this.totalDiscount = 0;
+        this.totalPrice = 0;
     }
 
     public static synchronized TotalPrice getInstance() {
@@ -40,5 +43,11 @@ public class TotalPrice {
 
     public double getTotalPrice() {
         return totalPrice - totalDiscount;
+    }
+    public void setBadge(String badge) {
+        this.badge = badge;
+    }
+    public String getBadge() {
+        return badge;
     }
 }
