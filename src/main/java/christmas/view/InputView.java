@@ -8,15 +8,6 @@ import static christmas.constants.Interface.enterMenuName;
 import static christmas.constants.Interface.initInterface;
 
 public class InputView {
-    private static InputView instance;
-    private InputView() {
-    }
-    public static InputView getInstance() {
-        if (instance == null) {
-            instance = new InputView();
-        }
-        return instance;
-    }
 
     public String readDate() {
         System.out.println(initInterface);

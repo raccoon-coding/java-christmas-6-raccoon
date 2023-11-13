@@ -1,16 +1,17 @@
 package christmas.model.dessert;
 
 import christmas.model.Menu;
+import christmas.model.Menus;
 import christmas.model.appetizer.AppetizerEntry;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dessert {
-    private List<Menu> desserts;
+    private Menus desserts;
 
     public Dessert() {
-        desserts = new ArrayList<>();
+        desserts = new Menus();
         dessertsInit();
     }
 
@@ -18,8 +19,8 @@ public class Dessert {
         return new DessertEntry(menuName, price);
     }
 
-    public List<Menu> getDesserts() {
-        return List.copyOf(desserts);
+    public Menus getDesserts() {
+        return desserts;
     }
 
     public static void setFixDiscount(int newFixDiscount) {
@@ -31,7 +32,7 @@ public class Dessert {
     }
 
     private void dessertsInit() {
-        desserts.add(new DessertEntry("초코케이크", 15_000));
-        desserts.add(new DessertEntry("아이스크림", 5_000));
+        desserts.addMenu(new DessertEntry("초코케이크", 15_000));
+        desserts.addMenu(new DessertEntry("아이스크림", 5_000));
     }
 }

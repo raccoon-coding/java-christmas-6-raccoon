@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static christmas.constants.CovertConstant.IS_EMPTY;
+import static christmas.constants.DiscountConstant.GIFT_EVENT;
 import static christmas.constants.Output.NULL_EVENT;
 import static christmas.constants.Output.ORDER_MENU;
 import static christmas.constants.Output.ORDER_MENU_COUNT;
@@ -24,38 +26,30 @@ import static christmas.constants.Output.EVENT_BADGE;
 import static christmas.constants.Output.PREDICT_PRICE;
 
 public class OutputView {
-    private static OutputView instance;
-    private OutputView() {
-    }
-    public static OutputView getInstance() {
-        if (instance == null) {
-            instance = new OutputView();
-        }
-        return instance;
-    }
     public void printMenu() {
         System.out.println(ORDER_MENU);
         MenuManager menuManager = MenuManager.getInstance();
         List<Menu> menus = menuManager.getAllMenuItems();
         for(Menu menu : menus){
-            if(menu.getQuantity() > 0) {
+            if(menu.getQuantity() > IS_EMPTY) {
                 System.out.printf(ORDER_MENU_COUNT, menu.getName(), menu.getQuantity());
             }
         }
     }
 
-    public void printPrice(double totalPrice){
+    public void printPrice(TotalPrice totalPrice){
         System.out.println(EMPTY_DISCOUNT_PRICE);
-        System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice));
+        System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice.getTotalPrice()));
     }
 
-    public void givenEvent(){
-        System.out.println(FREE_MENU_INIT);
-        System.out.println(FREE_MENU);
+    public void givenEvent(TotalPrice totalPrice){
+        if(totalPrice.getDiscount().containsKey(GIFT_EVENT)){
+            System.out.println(FREE_MENU_INIT);
+            System.out.println(FREE_MENU);
+        }
     }
 
-    public void totalDiscount() {
-        TotalPrice totalPrice = TotalPrice.getInstance();
+    public void totalDiscount(TotalPrice totalPrice) {
         sumDiscount(totalPrice);
         totalDiscountView(totalPrice);
         eventBadge(totalPrice);
@@ -87,7 +81,7 @@ public class OutputView {
         System.out.println(TOTAL_DISCOUNT);
         System.out.println(new DecimalFormat(NEGATIVE + PRICE_FORMAT).format(totalPrice.getTotalDiscount()));
         System.out.println(PREDICT_PRICE);
-        System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice.getTotalPrice()));
+        System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice.getPrice()));
     }
 
     private void eventBadge(TotalPrice totalPrice){

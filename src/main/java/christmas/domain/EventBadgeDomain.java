@@ -1,10 +1,10 @@
-package christmas.service;
+package christmas.domain;
 
 import christmas.model.TotalPrice;
 
 import java.util.Objects;
 
-public class EventBadge {
+public class EventBadgeDomain {
     public static final int STAR_MIN = 5_000;
     public static final int TREE_MIN = 10_000;
     public static final int SANTA_MIN = 20_000;

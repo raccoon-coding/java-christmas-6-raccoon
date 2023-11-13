@@ -1,16 +1,20 @@
 package christmas.model.mainFood;
 
 import christmas.model.Menu;
+import christmas.model.MenuManager;
+import christmas.model.Menus;
 import christmas.model.drink.DrinkEntry;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static christmas.constants.CovertConstant.IS_EMPTY;
+
 public class MainFood {
-    private List<Menu> mainFoods;
+    private Menus mainFoods;
 
     public MainFood() {
-        mainFoods = new ArrayList<>();
+        mainFoods = new Menus();
         mainFoodsInit();
     }
 
@@ -18,8 +22,8 @@ public class MainFood {
         return new MainFoodEntry(menuName, price);
     }
 
-    public List<Menu> getMainFoods() {
-        return List.copyOf(mainFoods);
+    public Menus getMainFoods() {
+        return mainFoods;
     }
 
     public static void setFixDiscount(int newFixDiscount) {
@@ -31,9 +35,9 @@ public class MainFood {
     }
 
     private void mainFoodsInit() {
-        mainFoods.add(new MainFoodEntry("티본스테이크", 55_000));
-        mainFoods.add(new MainFoodEntry("바비큐립", 54_000));
-        mainFoods.add(new MainFoodEntry("해산물파스타", 35_000));
-        mainFoods.add(new MainFoodEntry("크리스마스파스타", 25_000));
+        mainFoods.addMenu(new MainFoodEntry("티본스테이크", 55_000));
+        mainFoods.addMenu(new MainFoodEntry("바비큐립", 54_000));
+        mainFoods.addMenu(new MainFoodEntry("해산물파스타", 35_000));
+        mainFoods.addMenu(new MainFoodEntry("크리스마스파스타", 25_000));
     }
 }

@@ -42,12 +42,15 @@ public class TotalPrice {
     }
 
     public double getTotalPrice() {
-        return totalPrice - totalDiscount;
+        return totalPrice;
     }
     public void setBadge(String badge) {
         this.badge = badge;
     }
     public String getBadge() {
         return badge;
+    }
+    public double getPrice() {
+        return totalPrice - totalDiscount;
     }
 }

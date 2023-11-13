@@ -1,7 +1,6 @@
 package christmas.service;
 
-import christmas.dto.ConvertDate;
-import christmas.dto.ConvertMenu;
+import christmas.domain.ConvertDate;
 import christmas.view.InputView;
 
 public class DateInit {
@@ -17,8 +16,16 @@ public class DateInit {
     }
 
     public void run() {
-        InputView inputView = InputView.getInstance();
-        String date = inputView.readDate();
+        String date = enterDate();
+        convertDate(date);
+    }
+
+    private String enterDate() {
+        InputView inputView = new InputView();
+        return inputView.readDate();
+    }
+
+    private void convertDate(String date) {
         ConvertDate convertDate = new ConvertDate();
         convertDate.convertDate(date);
     }

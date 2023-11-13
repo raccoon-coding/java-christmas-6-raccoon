@@ -1,4 +1,4 @@
-package christmas.dto;
+package christmas.repository;
 
 import christmas.model.Date;
 import christmas.repository.SetFixDiscount;

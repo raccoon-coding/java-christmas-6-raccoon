@@ -5,15 +5,14 @@ import christmas.model.dessert.Dessert;
 import christmas.model.drink.Drink;
 import christmas.model.mainFood.MainFood;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MenuManager {
     private static MenuManager instance;
-    private List<Menu> allMenuItems;
+    private Menus allMenuItems;
 
     private MenuManager() {
-        allMenuItems = new ArrayList<>();
+        allMenuItems = new Menus();
         menuManagerInit();
     }
 
@@ -25,11 +24,11 @@ public class MenuManager {
     }
 
     public List<Menu> getAllMenuItems() {
-        return allMenuItems;
+        return allMenuItems.getMenus();
     }
 
     public void addMenuItems(Menu menu) {
-        allMenuItems.add(menu);
+        allMenuItems.addMenu(menu);
     }
 
     public void setAppetizerDiscount(int fixDiscount, float rateDiscount) {
@@ -54,15 +53,15 @@ public class MenuManager {
 
     private void menuManagerInit(){
         Appetizer appetizerMenu = new Appetizer();
-        allMenuItems.addAll(appetizerMenu.getAppetizers());
+        allMenuItems.addMenus(appetizerMenu.getAppetizers());
 
         MainFood mainFood = new MainFood();
-        allMenuItems.addAll(mainFood.getMainFoods());
+        allMenuItems.addMenus(mainFood.getMainFoods());
 
         Drink drink = new Drink();
-        allMenuItems.addAll(drink.getDrinks());
+        allMenuItems.addMenus(drink.getDrinks());
 
         Dessert dessert = new Dessert();
-        allMenuItems.addAll(dessert.getDesserts());
+        allMenuItems.addMenus(dessert.getDesserts());
     }
 }

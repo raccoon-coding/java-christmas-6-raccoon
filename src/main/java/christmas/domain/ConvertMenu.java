@@ -1,4 +1,4 @@
-package christmas.dto;
+package christmas.domain;
 
 import christmas.repository.UpdateMenuRepository;
 
@@ -11,13 +11,13 @@ import static christmas.constants.CovertConstant.SEPARATOR;
 public class ConvertMenu {
     public void convertMenu(String input) {
         Map<String, Integer> menu = new HashMap<>();
-        String[] items = input.split(SEPARATOR);
+        String[] menus = input.split(SEPARATOR);
 
-        for (String item : items) {
-            String[] parts = item.split(MAPPER);
-            String pastaType = parts[0];
-            int quantity = Integer.parseInt(parts[1]);
-            menu.put(pastaType, quantity);
+        for (String oneMenu : menus) {
+            String[] menuParts = oneMenu.split(MAPPER);
+            String menuName = menuParts[0];
+            int quantity = Integer.parseInt(menuParts[1]);
+            menu.put(menuName, quantity);
         }
 
         saveMenu(menu);
@@ -25,9 +25,10 @@ public class ConvertMenu {
 
     private void saveMenu(Map<String, Integer> menu){
         UpdateMenuRepository updateMenuRepository = UpdateMenuRepository.getInstance();
-        for (Map.Entry<String, Integer> entry : menu.entrySet()) {
-            String menuName = entry.getKey();
-            int menuQuantity = entry.getValue();
+
+        for (Map.Entry<String, Integer> menuEntry : menu.entrySet()) {
+            String menuName = menuEntry.getKey();
+            int menuQuantity = menuEntry.getValue();
             updateMenuRepository.updateQuantity(menuName, menuQuantity);
         }
     }

@@ -1,15 +1,19 @@
 package christmas.model.appetizer;
 
 import christmas.model.Menu;
+import christmas.model.MenuManager;
+import christmas.model.Menus;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static christmas.constants.CovertConstant.IS_EMPTY;
+
 public class Appetizer {
-    private List<Menu> appetizers;
+    private Menus appetizers;
 
     public Appetizer() {
-        appetizers = new ArrayList<>();
+        appetizers = new Menus();
         appetizersInit();
     }
 
@@ -17,8 +21,8 @@ public class Appetizer {
         return new AppetizerEntry(menuName, price);
     }
 
-    public List<Menu> getAppetizers() {
-        return List.copyOf(appetizers);
+    public Menus getAppetizers() {
+        return appetizers;
     }
 
     public static void setFixDiscount(int newFixDiscount) {
@@ -30,8 +34,8 @@ public class Appetizer {
     }
 
     private void appetizersInit() {
-        appetizers.add(new AppetizerEntry("양송이수프", 6_000));
-        appetizers.add(new AppetizerEntry("타파스", 5_500));
-        appetizers.add(new AppetizerEntry("시저샐러드", 8_000));
+        appetizers.addMenu(new AppetizerEntry("양송이수프", 6_000));
+        appetizers.addMenu(new AppetizerEntry("타파스", 5_500));
+        appetizers.addMenu(new AppetizerEntry("시저샐러드", 8_000));
     }
 }
