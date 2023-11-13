@@ -22,7 +22,7 @@ public class UpdateMenuRepository {
         }
     }
 
-    private Menu getMenuItemByName(String name) {
+    public Menu getMenuItemByName(String name) {
         MenuManager menuManager = MenuManager.getInstance();
         for (Menu menu : menuManager.getAllMenuItems()) {
             if(menu.getName().equalsIgnoreCase(name)) {

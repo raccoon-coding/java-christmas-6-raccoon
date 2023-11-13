@@ -2,7 +2,7 @@ package christmas.service;
 
 import christmas.domain.ConvertMenu;
 import christmas.domain.CalculationMenuDomain;
-import christmas.service.validation.MenuValidation;
+import christmas.service.validation.MenuConvertValidation;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -19,14 +19,21 @@ public class MenuInit {
     }
 
     public void run() {
-        init();
-        recheckMenu();
-        discount();
+        while(true) {
+            try {
+                init();
+                recheckMenu();
+                discount();
+                return;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void init() {
         String menus = enterMenu();
-        validationMenu(menus);
         convertMenu(menus);
     }
 
@@ -43,11 +50,6 @@ public class MenuInit {
     private String enterMenu() {
         InputView inputView = new InputView();
         return inputView.enterMenu();
-    }
-
-    private void validationMenu(String menus) {
-        MenuValidation menuValidation = new MenuValidation();
-        menuValidation.validateMenu(menus);
     }
 
     private void convertMenu(String menus) {

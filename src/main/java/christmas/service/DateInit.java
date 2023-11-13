@@ -16,8 +16,17 @@ public class DateInit {
     }
 
     public void run() {
-        String date = enterDate();
-        convertDate(date);
+        while(true){
+            try{
+                String date = enterDate();
+                convertDate(date);
+                return ;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private String enterDate() {
