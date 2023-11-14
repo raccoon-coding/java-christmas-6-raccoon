@@ -29,10 +29,6 @@ public class Appetizer {
         AppetizerEntry.setFixDiscount(newFixDiscount);
     }
 
-    public static void setRateDiscount(float newRateDiscount) {
-        AppetizerEntry.setRateDiscount(newRateDiscount);
-    }
-
     private void appetizersInit() {
         appetizers.addMenu(new AppetizerEntry("양송이수프", 6_000));
         appetizers.addMenu(new AppetizerEntry("타파스", 5_500));

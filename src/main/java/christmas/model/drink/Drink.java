@@ -27,10 +27,6 @@ public class Drink {
         DrinkEntry.setFixDiscount(newFixDiscount);
     }
 
-    public static void setRateDiscount(float newRateDiscount) {
-        DrinkEntry.setRateDiscount(newRateDiscount);
-    }
-
     private void drinksInit() {
         drinks.addMenu(new DrinkEntry("제로콜라", 3_000));
         drinks.addMenu(new DrinkEntry("레드와인", 60_000));

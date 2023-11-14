@@ -31,24 +31,20 @@ public class MenuManager {
         allMenuItems.addMenu(menu);
     }
 
-    public void setAppetizerDiscount(int fixDiscount, float rateDiscount) {
+    public void setAppetizerDiscount(int fixDiscount) {
         Appetizer.setFixDiscount(fixDiscount);
-        Appetizer.setRateDiscount(rateDiscount);
     }
 
-    public void setDessertDiscount(int fixDiscount, float rateDiscount) {
+    public void setDessertDiscount(int fixDiscount) {
         Dessert.setFixDiscount(fixDiscount);
-        Dessert.setRateDiscount(rateDiscount);
     }
 
-    public void setDrinkDiscount(int fixDiscount, float rateDiscount) {
+    public void setDrinkDiscount(int fixDiscount) {
         Drink.setFixDiscount(fixDiscount);
-        Drink.setRateDiscount(rateDiscount);
     }
 
-    public void setMainFoodDiscount(int fixDiscount, float rateDiscount) {
+    public void setMainFoodDiscount(int fixDiscount) {
         MainFood.setFixDiscount(fixDiscount);
-        MainFood.setRateDiscount(rateDiscount);
     }
 
     private void menuManagerInit(){

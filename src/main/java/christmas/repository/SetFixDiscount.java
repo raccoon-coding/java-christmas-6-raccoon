@@ -7,24 +7,23 @@ import christmas.model.drink.Drink;
 import christmas.model.mainFood.MainFood;
 
 public class SetFixDiscount {
-    private final float rateDiscount = 0;
     public void setAppetizer(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setAppetizerDiscount(discount, rateDiscount);
+        menuManager.setAppetizerDiscount(discount);
     }
 
     public void setMainFood(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setMainFoodDiscount(discount, rateDiscount);
+        menuManager.setMainFoodDiscount(discount);
     }
 
     public void setDrink(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setDrinkDiscount(discount, rateDiscount);
+        menuManager.setDrinkDiscount(discount);
     }
 
     public void setDessert(int discount) {
         MenuManager menuManager = MenuManager.getInstance();
-        menuManager.setDessertDiscount(discount, rateDiscount);
+        menuManager.setDessertDiscount(discount);
     }
 }

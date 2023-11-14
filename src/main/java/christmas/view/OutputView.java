@@ -79,7 +79,7 @@ public class OutputView {
 
     private void totalDiscountView(TotalPrice totalPrice){
         System.out.println(TOTAL_DISCOUNT);
-        System.out.println(new DecimalFormat(NEGATIVE + PRICE_FORMAT).format(totalPrice.getTotalDiscount()));
+        System.out.println(new DecimalFormat(NEGATIVE + PRICE_FORMAT).format(totalPrice.getTotalDiscount() + totalPrice.getDiscount().get(GIFT_EVENT)));
         System.out.println(PREDICT_PRICE);
         System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice.getPrice()));
     }

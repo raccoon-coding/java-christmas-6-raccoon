@@ -6,7 +6,6 @@ public class AppetizerEntry implements Menu {
     private String name;
     private double price;
     private int quantity;
-    private static float rateDiscount;
     private static int fixDiscount;
 
 
@@ -18,10 +17,6 @@ public class AppetizerEntry implements Menu {
 
     public static void setFixDiscount(int newFixDiscount) {
         fixDiscount = newFixDiscount;
-    }
-
-    public static void setRateDiscount(float newRateDiscount) {
-        rateDiscount = newRateDiscount;
     }
 
     @Override
@@ -39,10 +34,6 @@ public class AppetizerEntry implements Menu {
         return quantity;
     }
 
-    @Override
-    public float getRateDiscount() {
-        return rateDiscount;
-    }
 
     @Override
     public int getFixDiscount() {

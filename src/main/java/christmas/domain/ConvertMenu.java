@@ -19,16 +19,30 @@ public class ConvertMenu {
         Map<String, Integer> menu = new HashMap<>();
         String[] menus = menuConvertValidation.separateMenu(input);
 
+        separateMenu(menu, menus);
+        menuNameValidation.otherMenu(menu);
+        saveMenu(menu);
+    }
+
+    private void separateMenu(Map<String, Integer> menu, String[] menus) {
+        int totalQuantity = 0;
+
         for (String oneMenu : menus) {
             String[] menuParts = menuConvertValidation.convertOneMenu(oneMenu);
             menuConvertValidation.notSeparate(menuParts);
-            String menuName = menuParts[0];
-            int quantity = Integer.parseInt(menuParts[1]);
-            menuNameValidation.validateMenu(menuName, quantity);
-            menuNameValidation.sameMenu(menu, menuName);
-            menu.put(menuName, quantity);
+            totalQuantity += oneMenuSeparate(menuParts, menu);
         }
-        saveMenu(menu);
+
+        menuNameValidation.underCount(totalQuantity);
+    }
+
+    private int oneMenuSeparate(String[] menuParts, Map<String, Integer> menu) {
+        String menuName = menuParts[0];
+        int quantity = Integer.parseInt(menuParts[1]);
+        menuNameValidation.validateMenu(menuName, quantity);
+        menuNameValidation.sameMenu(menu, menuName);
+        menu.put(menuName, quantity);
+        return quantity;
     }
 
     private void saveMenu(Map<String, Integer> menu){

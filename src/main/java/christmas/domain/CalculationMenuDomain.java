@@ -40,7 +40,6 @@ public class CalculationMenuDomain {
 
         if(totalPrice.getTotalPrice() > MINIMUM_PRICE){
             totalPrice.setDiscount(GIFT_EVENT, GIFT_PRICE);
-            totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + GIFT_PRICE);
         }
     }
 }

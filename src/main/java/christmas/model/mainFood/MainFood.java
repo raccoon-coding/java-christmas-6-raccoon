@@ -30,9 +30,6 @@ public class MainFood {
         MainFoodEntry.setFixDiscount(newFixDiscount);
     }
 
-    public static void setRateDiscount(float newRateDiscount) {
-        MainFoodEntry.setRateDiscount(newRateDiscount);
-    }
 
     private void mainFoodsInit() {
         mainFoods.addMenu(new MainFoodEntry("티본스테이크", 55_000));

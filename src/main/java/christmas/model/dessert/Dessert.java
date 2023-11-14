@@ -27,10 +27,6 @@ public class Dessert {
         DessertEntry.setFixDiscount(newFixDiscount);
     }
 
-    public static void setRateDiscount(float newRateDiscount) {
-        DessertEntry.setRateDiscount(newRateDiscount);
-    }
-
     private void dessertsInit() {
         desserts.addMenu(new DessertEntry("초코케이크", 15_000));
         desserts.addMenu(new DessertEntry("아이스크림", 5_000));
