@@ -1,7 +1,6 @@
 package christmas.repository;
 
 import christmas.model.Date;
-import christmas.repository.SetFixDiscount;
 
 import java.util.Objects;
 

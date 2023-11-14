@@ -38,7 +38,7 @@ public class ConvertMenu {
 
     private int oneMenuSeparate(String[] menuParts, Map<String, Integer> menu) {
         String menuName = menuParts[0];
-        int quantity = Integer.parseInt(menuParts[1]);
+        int quantity = menuConvertValidation.convertMenuQuantity(menuParts[1]);
         menuNameValidation.validateMenu(menuName, quantity);
         menuNameValidation.sameMenu(menu, menuName);
         menu.put(menuName, quantity);

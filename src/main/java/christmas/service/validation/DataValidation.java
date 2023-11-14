@@ -6,6 +6,7 @@ import static christmas.constants.CovertConstant.IS_EMPTY;
 import static java.lang.Integer.parseInt;
 
 public class DataValidation {
+    public static final int LAST_DAY = 31;
     public int convertInt(String date) {
         try{
             return parseInt(date);
@@ -16,7 +17,7 @@ public class DataValidation {
     }
 
     public void validateDate(int date) {
-        if(date <= IS_EMPTY || date > 31){
+        if(date <= IS_EMPTY || date > LAST_DAY){
             throw new IllegalArgumentException(ErrorMessage.ENTER_DATE.getMessage());
         }
     }

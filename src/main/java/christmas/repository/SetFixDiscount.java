@@ -1,10 +1,6 @@
 package christmas.repository;
 
 import christmas.model.MenuManager;
-import christmas.model.appetizer.Appetizer;
-import christmas.model.dessert.Dessert;
-import christmas.model.drink.Drink;
-import christmas.model.mainFood.MainFood;
 
 public class SetFixDiscount {
     public void setAppetizer(int discount) {

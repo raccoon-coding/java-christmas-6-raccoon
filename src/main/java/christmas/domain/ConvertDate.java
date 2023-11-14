@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.SevenDays;
 import christmas.model.Date;
 import christmas.service.validation.DataValidation;

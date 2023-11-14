@@ -16,6 +16,11 @@ public class MenuManager {
         menuManagerInit();
     }
 
+    public void refresh() {
+        allMenuItems = new Menus();
+        menuManagerInit();
+    }
+
     public static synchronized MenuManager getInstance() {
         if (instance == null) {
             instance = new MenuManager();

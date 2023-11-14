@@ -1,14 +1,7 @@
 package christmas.model.mainFood;
 
 import christmas.model.Menu;
-import christmas.model.MenuManager;
 import christmas.model.Menus;
-import christmas.model.drink.DrinkEntry;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static christmas.constants.CovertConstant.IS_EMPTY;
 
 public class MainFood {
     private Menus mainFoods;

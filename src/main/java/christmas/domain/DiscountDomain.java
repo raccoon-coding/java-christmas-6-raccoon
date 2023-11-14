@@ -25,6 +25,8 @@ public class DiscountDomain {
         christmasDiscount(date, totalPrice);
         weekdayDiscount(date, totalPrice);
         weekendDiscount(date, totalPrice);
+
+        totalPrice.setTotalEvent(totalPrice.getTotalDiscount() + totalPrice.getTotalEvent());
     }
 
     private void serviceDiscount(Date date, TotalPrice totalPrice) {
@@ -32,7 +34,7 @@ public class DiscountDomain {
         if(discount > IS_EMPTY){
             totalPrice.setDiscount(SPECIAL, discount);
         }
-        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + discount);
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + (-1 * discount));
     }
 
     private void christmasDiscount(Date date, TotalPrice totalPrice) {
@@ -40,7 +42,7 @@ public class DiscountDomain {
         if(discount > IS_EMPTY){
             totalPrice.setDiscount(CHRISTMAS, discount);
         }
-        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + discount);
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + (-1 * discount));
     }
 
     private void weekdayDiscount(Date date, TotalPrice totalPrice){
@@ -60,7 +62,7 @@ public class DiscountDomain {
         if(weekdayDiscount > IS_EMPTY){
             totalPrice.setDiscount(WEEKDAY, weekdayDiscount);
         }
-        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + weekdayDiscount);
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + (weekdayDiscount * (-1)));
     }
 
     private void weekendDiscount(Date date, TotalPrice totalPrice){
@@ -80,6 +82,6 @@ public class DiscountDomain {
         if(weekendDiscount > IS_EMPTY){
             totalPrice.setDiscount(WEEKEND, weekendDiscount);
         }
-        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + weekendDiscount);
+        totalPrice.setTotalDiscount(totalPrice.getTotalDiscount() + (weekendDiscount * (-1)));
     }
 }

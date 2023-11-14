@@ -7,7 +7,10 @@ public class Date {
     private int christmasDiscount;
     private int specialDiscount;
 
-    private Date() {}
+    private Date() {
+        nDays = 0;
+        day = null;
+    }
 
     public static synchronized Date getInstance(){
         if (instance == null) {

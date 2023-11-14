@@ -1,13 +1,7 @@
 package christmas.model.appetizer;
 
 import christmas.model.Menu;
-import christmas.model.MenuManager;
 import christmas.model.Menus;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static christmas.constants.CovertConstant.IS_EMPTY;
 
 public class Appetizer {
     private Menus appetizers;

@@ -16,7 +16,6 @@ import static christmas.constants.Output.ORDER_MENU;
 import static christmas.constants.Output.ORDER_MENU_COUNT;
 import static christmas.constants.Output.EMPTY_DISCOUNT_PRICE;
 import static christmas.constants.Output.PRICE_FORMAT;
-import static christmas.constants.Output.NEGATIVE;
 import static christmas.constants.Output.FREE_MENU_INIT;
 import static christmas.constants.Output.FREE_MENU;
 import static christmas.constants.Output.DISCOUNT_CONTEXT_INIT;
@@ -79,7 +78,7 @@ public class OutputView {
 
     private void totalDiscountView(TotalPrice totalPrice){
         System.out.println(TOTAL_DISCOUNT);
-        System.out.println(new DecimalFormat(NEGATIVE + PRICE_FORMAT).format(totalPrice.getTotalDiscount() + totalPrice.getDiscount().get(GIFT_EVENT)));
+        System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice.getTotalEvent()));
         System.out.println(PREDICT_PRICE);
         System.out.println(new DecimalFormat(PRICE_FORMAT).format(totalPrice.getPrice()));
     }

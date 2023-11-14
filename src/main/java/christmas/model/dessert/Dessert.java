@@ -2,10 +2,6 @@ package christmas.model.dessert;
 
 import christmas.model.Menu;
 import christmas.model.Menus;
-import christmas.model.appetizer.AppetizerEntry;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Dessert {
     private Menus desserts;

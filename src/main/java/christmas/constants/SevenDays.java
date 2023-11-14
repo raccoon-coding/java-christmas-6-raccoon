@@ -15,7 +15,7 @@ public enum SevenDays {
         this.value = value;
     }
 
-    public String getValue(){
+    public String getDays(){
         return value;
     }
 
@@ -23,6 +23,6 @@ public enum SevenDays {
         if(index < 0 || index >= SevenDays.values().length){
             return null;
         }
-        return SevenDays.values()[index].getValue();
+        return SevenDays.values()[index].getDays();
     }
 }
