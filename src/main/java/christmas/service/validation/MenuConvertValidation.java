@@ -4,8 +4,8 @@ import christmas.constants.ErrorMessage;
 
 import java.util.regex.PatternSyntaxException;
 
-import static christmas.constants.CovertConstant.MAPPER;
-import static christmas.constants.CovertConstant.SEPARATOR;
+import static christmas.constants.Covert.MAPPER;
+import static christmas.constants.Covert.SEPARATOR;
 
 public class MenuConvertValidation {
     public String[] convertOneMenu(String oneMenu) {

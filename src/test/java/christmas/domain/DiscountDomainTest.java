@@ -4,32 +4,32 @@ import christmas.constants.SevenDays;
 import christmas.model.Date;
 import christmas.model.TotalPrice;
 import christmas.repository.SaveDiscount;
-import christmas.repository.UpdateMenuRepository;
+import christmas.repository.UpdateMenu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static christmas.constants.DiscountConstant.CHRISTMAS;
-import static christmas.constants.DiscountConstant.SPECIAL;
-import static christmas.constants.DiscountConstant.WEEKDAY;
-import static christmas.constants.DiscountConstant.WEEKEND;
+import static christmas.constants.Discount.CHRISTMAS;
+import static christmas.constants.Discount.SPECIAL;
+import static christmas.constants.Discount.WEEKDAY;
+import static christmas.constants.Discount.WEEKEND;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DiscountDomainTest {
-    private static DiscountDomain discountDomain;
+    private static Discount discountDomain;
     private static Date date;
     private static TotalPrice totalPrice;
     private static SaveDiscount saveDiscount;
-    private static UpdateMenuRepository updateMenuRepository;
+    private static UpdateMenu updateMenuRepository;
 
     @BeforeAll
     public static void testSetUp() {
-        discountDomain = new DiscountDomain();
+        discountDomain = new Discount();
         date = Date.getInstance();
         totalPrice = TotalPrice.getInstance();
         saveDiscount = new SaveDiscount();
-        updateMenuRepository = UpdateMenuRepository.getInstance();
+        updateMenuRepository = UpdateMenu.getInstance();
     }
 
     @AfterEach

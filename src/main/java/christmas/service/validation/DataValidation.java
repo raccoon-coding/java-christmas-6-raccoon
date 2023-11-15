@@ -2,7 +2,7 @@ package christmas.service.validation;
 
 import christmas.constants.ErrorMessage;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
+import static christmas.constants.Covert.IS_EMPTY;
 import static java.lang.Integer.parseInt;
 
 public class DataValidation {

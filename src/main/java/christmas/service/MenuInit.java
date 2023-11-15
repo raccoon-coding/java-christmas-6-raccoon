@@ -1,8 +1,7 @@
 package christmas.service;
 
 import christmas.domain.ConvertMenu;
-import christmas.domain.CalculationMenuDomain;
-import christmas.service.validation.MenuConvertValidation;
+import christmas.domain.CalculationMenu;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -43,7 +42,7 @@ public class MenuInit {
     }
 
     private void discount() {
-        CalculationMenuDomain enterMenuDomain = new CalculationMenuDomain();
+        CalculationMenu enterMenuDomain = new CalculationMenu();
         enterMenuDomain.calculationMenuDomain();
     }
 

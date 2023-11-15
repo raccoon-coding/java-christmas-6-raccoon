@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
-import static christmas.constants.DiscountConstant.GIFT_EVENT;
+import static christmas.constants.Covert.IS_EMPTY;
+import static christmas.constants.Discount.GIFT_EVENT;
 import static christmas.constants.Output.NULL_EVENT;
 import static christmas.constants.Output.ORDER_MENU;
 import static christmas.constants.Output.ORDER_MENU_COUNT;

@@ -4,17 +4,18 @@ import christmas.model.TotalPrice;
 
 import java.util.Objects;
 
-public class EventBadgeDomain {
+public class EventBadge {
     public static final int STAR_MIN = 5_000;
     public static final int TREE_MIN = 10_000;
     public static final int SANTA_MIN = 20_000;
+    public static final int ABSOLUTE = -1;
     public static final String STAR = "별";
     public static final String TREE = "트리";
     public static final String SANTA = "산타";
 
     public void eventBadge(){
         TotalPrice totalPrice = TotalPrice.getInstance();
-        double discount = totalPrice.getTotalEvent();
+        double discount = totalPrice.getTotalEvent() * ABSOLUTE;
         santa(totalPrice, discount);
         tree(totalPrice, discount);
         star(totalPrice, discount);

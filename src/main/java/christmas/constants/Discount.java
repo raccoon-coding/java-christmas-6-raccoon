@@ -1,6 +1,6 @@
 package christmas.constants;
 
-public class DiscountConstant {
+public class Discount {
     public static final String GIFT_EVENT = "증정 이벤트";
     public static final String FRIDAY = "금요일";
     public static final String SATURDAY = "토요일";

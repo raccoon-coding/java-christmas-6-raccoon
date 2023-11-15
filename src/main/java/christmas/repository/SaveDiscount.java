@@ -4,14 +4,14 @@ import christmas.model.Date;
 
 import java.util.Objects;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
-import static christmas.constants.DiscountConstant.WEEK_DISCOUNT;
-import static christmas.constants.DiscountConstant.FRIDAY;
-import static christmas.constants.DiscountConstant.SATURDAY;
-import static christmas.constants.DiscountConstant.CHRISTMAS_DAY;
-import static christmas.constants.DiscountConstant.CHRISTMAS_DISCOUNT;
-import static christmas.constants.DiscountConstant.SUNDAY;
-import static christmas.constants.DiscountConstant.SPECIAL_DISCOUNT;
+import static christmas.constants.Covert.IS_EMPTY;
+import static christmas.constants.Discount.WEEK_DISCOUNT;
+import static christmas.constants.Discount.FRIDAY;
+import static christmas.constants.Discount.SATURDAY;
+import static christmas.constants.Discount.CHRISTMAS_DAY;
+import static christmas.constants.Discount.CHRISTMAS_DISCOUNT;
+import static christmas.constants.Discount.SUNDAY;
+import static christmas.constants.Discount.SPECIAL_DISCOUNT;
 
 public class SaveDiscount {
     public void saveDiscount() {

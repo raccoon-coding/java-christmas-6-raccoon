@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import christmas.repository.UpdateMenuRepository;
+import christmas.repository.UpdateMenu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConvertMenuTest {
     private static ConvertMenu convertMenu;
-    private static UpdateMenuRepository updateMenuRepository;
+    private static UpdateMenu updateMenuRepository;
     static String enterMenu;
 
     @BeforeAll
     public static void testSetUp() {
         convertMenu = new ConvertMenu();
-        updateMenuRepository = UpdateMenuRepository.getInstance();
+        updateMenuRepository = UpdateMenu.getInstance();
     }
 
     @AfterEach

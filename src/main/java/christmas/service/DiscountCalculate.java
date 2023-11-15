@@ -9,10 +9,10 @@ import christmas.view.OutputView;
 public class DiscountCalculate {
     private static DiscountCalculate instance;
     SaveDiscount saveDiscount;
-    EventBadgeDomain eventBadge;
+    EventBadge eventBadge;
     private DiscountCalculate() {
         this.saveDiscount = new SaveDiscount();
-        this.eventBadge = new EventBadgeDomain();
+        this.eventBadge = new EventBadge();
     }
 
     public static synchronized DiscountCalculate getInstance() {
@@ -32,7 +32,7 @@ public class DiscountCalculate {
     private void discountDomain() {
         Date date = Date.getInstance();
         TotalPrice totalPrice = TotalPrice.getInstance();
-        DiscountDomain discountDomain = new DiscountDomain();
+        Discount discountDomain = new Discount();
 
         discountDomain.calculateDiscount(date, totalPrice);
     }

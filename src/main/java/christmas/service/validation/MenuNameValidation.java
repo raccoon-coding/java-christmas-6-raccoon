@@ -3,13 +3,12 @@ package christmas.service.validation;
 
 import christmas.constants.ErrorMessage;
 import christmas.model.drink.DrinkEntry;
-import christmas.repository.UpdateMenuRepository;
+import christmas.repository.UpdateMenu;
 
 import java.util.Map;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
-import static christmas.constants.CovertConstant.MAX_QUANTITY;
-import static christmas.constants.MenuConstant.DRINK;
+import static christmas.constants.Covert.IS_EMPTY;
+import static christmas.constants.Covert.MAX_QUANTITY;
 
 public class MenuNameValidation {
     public void validateMenu(String menuName, int quantity) {
@@ -30,7 +29,7 @@ public class MenuNameValidation {
     }
 
     public void otherMenu(Map<String, Integer> menus){
-        UpdateMenuRepository updateMenuRepository = UpdateMenuRepository.getInstance();
+        UpdateMenu updateMenuRepository = UpdateMenu.getInstance();
         boolean onlyDrink = true;
         for(Map.Entry<String, Integer> menu : menus.entrySet()){
             if(!(updateMenuRepository.getMenuItemByName(menu.getKey()) instanceof DrinkEntry)){
@@ -50,7 +49,7 @@ public class MenuNameValidation {
     }
 
     private void menuNameValidate(String menuName) {
-        UpdateMenuRepository updateMenuRepository = UpdateMenuRepository.getInstance();
+        UpdateMenu updateMenuRepository = UpdateMenu.getInstance();
         if(updateMenuRepository.getMenuItemByName(menuName) == null){
             throw new IllegalArgumentException(ErrorMessage.ENTER_MENU.getMessage());
         }

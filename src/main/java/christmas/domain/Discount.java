@@ -6,16 +6,16 @@ import christmas.repository.*;
 
 import java.util.*;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
-import static christmas.constants.DiscountConstant.CHRISTMAS;
-import static christmas.constants.DiscountConstant.FRIDAY;
-import static christmas.constants.DiscountConstant.SATURDAY;
-import static christmas.constants.DiscountConstant.SPECIAL;
-import static christmas.constants.DiscountConstant.WEEKDAY;
-import static christmas.constants.DiscountConstant.WEEKEND;
-import static christmas.constants.MenuConstant.MIN_TOTAL_PRICE;
+import static christmas.constants.Covert.IS_EMPTY;
+import static christmas.constants.Discount.CHRISTMAS;
+import static christmas.constants.Discount.FRIDAY;
+import static christmas.constants.Discount.SATURDAY;
+import static christmas.constants.Discount.SPECIAL;
+import static christmas.constants.Discount.WEEKDAY;
+import static christmas.constants.Discount.WEEKEND;
+import static christmas.constants.Menu.MIN_TOTAL_PRICE;
 
-public class DiscountDomain {
+public class Discount {
     public void calculateDiscount(Date date, TotalPrice totalPrice) {
         if(totalPrice.getTotalPrice() < MIN_TOTAL_PRICE){
             return;

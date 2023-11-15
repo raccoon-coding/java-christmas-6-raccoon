@@ -7,7 +7,7 @@ import christmas.model.mainFood.MainFoodEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
+import static christmas.constants.Covert.IS_EMPTY;
 
 public class GetMainFood {
     public List<Menu> getMainFood() {

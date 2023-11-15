@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import christmas.repository.UpdateMenuRepository;
+import christmas.repository.UpdateMenu;
 import christmas.service.validation.MenuConvertValidation;
 import christmas.service.validation.MenuNameValidation;
 
@@ -46,7 +46,7 @@ public class ConvertMenu {
     }
 
     private void saveMenu(Map<String, Integer> menu){
-        UpdateMenuRepository updateMenuRepository = UpdateMenuRepository.getInstance();
+        UpdateMenu updateMenuRepository = UpdateMenu.getInstance();
 
         for (Map.Entry<String, Integer> menuEntry : menu.entrySet()) {
             String menuName = menuEntry.getKey();

@@ -3,14 +3,14 @@ package christmas.repository;
 import christmas.model.Menu;
 import christmas.model.MenuManager;
 
-public class UpdateMenuRepository {
-    private static UpdateMenuRepository instance;
+public class UpdateMenu {
+    private static UpdateMenu instance;
 
-    private UpdateMenuRepository() {}
+    private UpdateMenu() {}
 
-    public static synchronized UpdateMenuRepository getInstance() {
+    public static synchronized UpdateMenu getInstance() {
         if (instance == null) {
-            instance = new UpdateMenuRepository();
+            instance = new UpdateMenu();
         }
         return instance;
     }

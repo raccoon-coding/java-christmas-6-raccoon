@@ -4,11 +4,11 @@ import christmas.model.MenuManager;
 import christmas.model.Menu;
 import christmas.model.TotalPrice;
 
-import static christmas.constants.CovertConstant.IS_EMPTY;
-import static christmas.constants.DiscountConstant.GIFT_EVENT;
-import static christmas.constants.DiscountConstant.GIFT_PRICE;
+import static christmas.constants.Covert.IS_EMPTY;
+import static christmas.constants.Discount.GIFT_EVENT;
+import static christmas.constants.Discount.GIFT_PRICE;
 
-public class CalculationMenuDomain {
+public class CalculationMenu {
     public static final int MINIMUM_PRICE = 120_000;
 
     public void calculationMenuDomain() {

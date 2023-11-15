@@ -1,26 +1,26 @@
 package christmas.domain;
 
 import christmas.model.TotalPrice;
-import christmas.repository.UpdateMenuRepository;
+import christmas.repository.UpdateMenu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static christmas.constants.DiscountConstant.GIFT_EVENT;
-import static christmas.constants.DiscountConstant.GIFT_PRICE;
+import static christmas.constants.Discount.GIFT_EVENT;
+import static christmas.constants.Discount.GIFT_PRICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculationMenuDomainTest {
-    CalculationMenuDomain calculationMenuDomain;
+    CalculationMenu calculationMenuDomain;
 
     public CalculationMenuDomainTest() {
-        this.calculationMenuDomain = new CalculationMenuDomain();
+        this.calculationMenuDomain = new CalculationMenu();
     }
 
     @BeforeEach
     public void beforeTest() {
-        UpdateMenuRepository updateMenuRepository = UpdateMenuRepository.getInstance();
+        UpdateMenu updateMenuRepository = UpdateMenu.getInstance();
         updateMenuRepository.updateQuantity("티본스테이크", 2);
         updateMenuRepository.updateQuantity("레드와인", 1);
         updateMenuRepository.updateQuantity("시저샐러드", 1);
@@ -29,7 +29,7 @@ public class CalculationMenuDomainTest {
 
     @AfterEach
     public void testEnd() {
-        UpdateMenuRepository updateMenuRepository = UpdateMenuRepository.getInstance();
+        UpdateMenu updateMenuRepository = UpdateMenu.getInstance();
         updateMenuRepository.updateQuantity("티본스테이크", 0);
         updateMenuRepository.updateQuantity("레드와인", 0);
         updateMenuRepository.updateQuantity("시저샐러드", 0);
