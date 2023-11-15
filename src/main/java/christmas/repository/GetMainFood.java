@@ -15,7 +15,6 @@ public class GetMainFood {
         MenuManager menuManager = MenuManager.getInstance();
         for(Menu menu : menuManager.getAllMenuItems()){
             if (menu instanceof MainFoodEntry && menu.getQuantity() > IS_EMPTY){
-                System.out.println(menu.getName());
                 mainFood.add(menu);
             }
         }
