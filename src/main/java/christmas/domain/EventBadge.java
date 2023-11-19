@@ -1,40 +1,50 @@
 package christmas.domain;
 
-import christmas.model.TotalPrice;
+import christmas.Dto.Discount.DiscountPolicy;
+import christmas.Dto.OrderMenu;
+import christmas.Dto.OrderMenus;
 
 import java.util.Objects;
 
+import static christmas.constants.Badge.FIRST_BADGE;
+import static christmas.constants.Badge.FIRST_BADGE_MIN;
+import static christmas.constants.Badge.SECOND_BADGE;
+import static christmas.constants.Badge.SECOND_BADGE_MIN;
+import static christmas.constants.Badge.THIRD_BADGE;
+import static christmas.constants.Badge.THIRD_BADGE_MIN;
+import static christmas.view.OutputView.OutputConstants.NULL_EVENT;
+
 public class EventBadge {
-    public static final int STAR_MIN = 5_000;
-    public static final int TREE_MIN = 10_000;
-    public static final int SANTA_MIN = 20_000;
-    public static final int ABSOLUTE = -1;
-    public static final String STAR = "별";
-    public static final String TREE = "트리";
-    public static final String SANTA = "산타";
 
     public void eventBadge(){
-        TotalPrice totalPrice = TotalPrice.getInstance();
-        double discount = totalPrice.getTotalEvent() * ABSOLUTE;
-        santa(totalPrice, discount);
-        tree(totalPrice, discount);
-        star(totalPrice, discount);
+        OrderMenus orderMenus = OrderMenus.getInstance();
+        int totalDiscount = setUp(orderMenus);
+
+        first(orderMenus, totalDiscount);
+        second(orderMenus, totalDiscount);
+        third(orderMenus, totalDiscount);
     }
 
-    private void star(TotalPrice totalPrice, double discount) {
-        if(discount >= STAR_MIN && Objects.equals(totalPrice.getBadge(), null)){
-            totalPrice.setBadge(STAR);
+    private int setUp(OrderMenus orderMenus) {
+        DiscountPolicy discountPolicy = DiscountPolicy.getInstance();
+        OrderMenu promotion = orderMenus.requestPromotion();
+        return discountPolicy.requestTotalDiscount() + promotion.requestQuantity() * promotion.requestMenuPrice();
+    }
+
+    private void third(OrderMenus orderMenus, int totalPrice) {
+        if(totalPrice >= THIRD_BADGE_MIN && Objects.equals(orderMenus.requestBadge(), NULL_EVENT)){
+            orderMenus.setBadge(THIRD_BADGE);
         }
     }
 
-    private void tree(TotalPrice totalPrice, double discount) {
-        if(discount >= TREE_MIN && Objects.equals(totalPrice.getBadge(), null)){
-            totalPrice.setBadge(TREE);
+    private void second(OrderMenus orderMenus, int totalPrice) {
+        if(totalPrice >= SECOND_BADGE_MIN && Objects.equals(orderMenus.requestBadge(), NULL_EVENT)){
+            orderMenus.setBadge(SECOND_BADGE);
         }
     }
-    private void santa(TotalPrice totalPrice, double discount) {
-        if(discount >= SANTA_MIN && Objects.equals(totalPrice.getBadge(), null)){
-            totalPrice.setBadge(SANTA);
+    private void first(OrderMenus orderMenus, int totalPrice) {
+        if(totalPrice >= FIRST_BADGE_MIN && Objects.equals(orderMenus.requestBadge(), NULL_EVENT)){
+            orderMenus.setBadge(FIRST_BADGE);
         }
     }
 }

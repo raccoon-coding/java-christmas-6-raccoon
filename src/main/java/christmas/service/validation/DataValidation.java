@@ -21,8 +21,4 @@ public class DataValidation {
             throw new IllegalArgumentException(ErrorMessage.ENTER_DATE.getMessage());
         }
     }
-
-    public void validateDay(String day){
-
-    }
 }

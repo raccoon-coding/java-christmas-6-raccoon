@@ -1,16 +1,17 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.model.TotalPrice;
-import christmas.service.validation.DataValidation;
 
-import static christmas.constants.Interface.enterMenuName;
-import static christmas.constants.Interface.initInterface;
+import static christmas.constants.StartPlanner.enterMenuName;
+import static christmas.constants.StartPlanner.enterReservationDate;
+import static christmas.constants.StartPlanner.startPlanner;
 
 public class InputView {
-
+    public void startUI() {
+        System.out.println(startPlanner);
+    }
     public String readDate() {
-        System.out.println(initInterface);
+        System.out.println(enterReservationDate);
         return Console.readLine();
     }
 

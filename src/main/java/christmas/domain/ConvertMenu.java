@@ -1,15 +1,17 @@
 package christmas.domain;
 
-import christmas.repository.UpdateMenu;
+import christmas.Dto.OrderMenus;
 import christmas.service.validation.MenuConvertValidation;
 import christmas.service.validation.MenuNameValidation;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConvertMenu {
-    MenuConvertValidation menuConvertValidation;
-    MenuNameValidation menuNameValidation;
+    public MenuConvertValidation menuConvertValidation;
+    public MenuNameValidation menuNameValidation;
+
     public ConvertMenu() {
         this.menuConvertValidation = new MenuConvertValidation();
         this.menuNameValidation = new MenuNameValidation();
@@ -20,18 +22,17 @@ public class ConvertMenu {
         String[] menus = menuConvertValidation.separateMenu(input);
 
         separateMenu(menu, menus);
-        menuNameValidation.otherMenu(menu);
         saveMenu(menu);
     }
 
     private void separateMenu(Map<String, Integer> menu, String[] menus) {
-        int totalQuantity = 0;
-
-        for (String oneMenu : menus) {
-            String[] menuParts = menuConvertValidation.convertOneMenu(oneMenu);
-            menuConvertValidation.notSeparate(menuParts);
-            totalQuantity += oneMenuSeparate(menuParts, menu);
-        }
+        int totalQuantity = Arrays.stream(menus)
+                .mapToInt(oneMenu -> {
+                    String[] menuParts = menuConvertValidation.convertOneMenu(oneMenu);
+                    menuConvertValidation.notSeparate(menuParts);
+                    return oneMenuSeparate(menuParts, menu);
+                })
+                .sum();
 
         menuNameValidation.underCount(totalQuantity);
     }
@@ -39,19 +40,18 @@ public class ConvertMenu {
     private int oneMenuSeparate(String[] menuParts, Map<String, Integer> menu) {
         String menuName = menuParts[0];
         int quantity = menuConvertValidation.convertMenuQuantity(menuParts[1]);
-        menuNameValidation.validateMenu(menuName, quantity);
+
+        menuNameValidation.validateMenuName(menuName);
+        menuNameValidation.validateMenuQuantity(quantity);
         menuNameValidation.sameMenu(menu, menuName);
+
         menu.put(menuName, quantity);
         return quantity;
     }
 
     private void saveMenu(Map<String, Integer> menu){
-        UpdateMenu updateMenuRepository = UpdateMenu.getInstance();
+        OrderMenus orderMenus = OrderMenus.getInstance();
 
-        for (Map.Entry<String, Integer> menuEntry : menu.entrySet()) {
-            String menuName = menuEntry.getKey();
-            int menuQuantity = menuEntry.getValue();
-            updateMenuRepository.updateQuantity(menuName, menuQuantity);
-        }
+        menu.forEach(orderMenus::addOrderItem);
     }
 }

@@ -4,21 +4,10 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.model.MenuManager;
-import christmas.model.TotalPrice;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
-
-    @AfterEach
-    public void testEnd() {
-        TotalPrice totalPrice = TotalPrice.getInstance();
-        totalPrice.refresh();
-        MenuManager menuManager = MenuManager.getInstance();
-        menuManager.refresh();
-    }
 
     @Test
     void 모든_타이틀_출력() {
