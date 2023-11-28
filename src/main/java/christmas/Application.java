@@ -1,10 +1,11 @@
 package christmas;
 
-import christmas.Controller.MenuOrder;
+import christmas.controller.MenuOrder;
+import christmas.controller.Planner;
 
 public class Application {
     public static void main(String[] args) {
-        MenuOrder order = MenuOrder.getInstance();
-        order.run();
+        Planner planner = Planner.getInstance();
+        planner.run();
     }
 }
