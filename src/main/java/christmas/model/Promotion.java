@@ -66,13 +66,13 @@ public class Promotion {
 
     private void isSpecialDiscount(ReservationDate date) {
         if(date.getWeek().equals("SUNDAY") || date.getDayOfWeek() == 25){
-            promotion.put("특별 할인", 1000);
+            promotion.put("특별 할인", 1_000);
         }
     }
 
     private void isHaveOrder(String menuType, String discountType,  OrderMenus orderMenus) {
         if(orderMenus.haveMenuType(menuType)){
-            this.promotion.put(discountType, orderMenus.menuTypeCount(menuType) * 2023);
+            this.promotion.put(discountType, orderMenus.menuTypeCount(menuType) * 2_023);
         }
     }
 

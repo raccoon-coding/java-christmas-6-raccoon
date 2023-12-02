@@ -14,6 +14,6 @@ public enum MenuType {
     }
 
     public String getMenuType() {
-        return this.getMenuType();
+        return this.menuType;
     }
 }

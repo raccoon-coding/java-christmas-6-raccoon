@@ -20,6 +20,10 @@ public class Consumer {
         return new Consumer(consumerRequest.reservationDate(), consumerRequest.orderMenus(), consumerRequest.promotion());
     }
 
+    public int getDate() {
+        return this.reservationDate.getDayOfWeek();
+    }
+
     public Map<String, Integer> getOrderMenus() {
         return orderMenus.getOrderMenus().entrySet().stream()
                 .collect(Collectors.toMap(

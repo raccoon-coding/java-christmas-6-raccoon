@@ -31,8 +31,9 @@ public class OrderMenus {
     }
 
     public boolean haveMenuType(String menuType) {
-        return orderMenus.entrySet().stream()
-                .filter(entry -> entry.getKey().getMenuType().equals(menuType)).isParallel();
+        return orderMenus.keySet().stream()
+                .map(Menus::getMenuType)
+                .anyMatch(type -> type.equals(menuType));
     }
 
     public int getTotalPrice() {
