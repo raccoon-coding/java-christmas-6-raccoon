@@ -25,10 +25,14 @@ public class InputValidate {
     }
 
     public Map<String, Integer> isMenuFormat(String enterMenus) {
-        return Arrays.stream(enterMenus.split(MENU_SEPARATOR))
-                .map(oneMenu -> oneMenu.split(MENU_COUNT_SEPARATOR))
-                .collect(Collectors.toMap(oneMenu -> oneMenu[0],
-                        oneMenu -> isCount(oneMenu[1])));
+        try {
+            return Arrays.stream(enterMenus.split(MENU_SEPARATOR))
+                    .map(oneMenu -> oneMenu.split(MENU_COUNT_SEPARATOR))
+                    .collect(Collectors.toMap(oneMenu -> oneMenu[0],
+                            oneMenu -> isCount(oneMenu[1])));
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.IS_MENU.getErrorMessage());
+        }
     }
 
     private void isDateLange(int date) {

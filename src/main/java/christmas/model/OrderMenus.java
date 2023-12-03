@@ -1,11 +1,16 @@
 package christmas.model;
 
 import christmas.dto.OrderMenusRequest;
+import christmas.model.constants.ErrorMessage;
 import christmas.model.constants.Menus;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
+
+import static christmas.model.constants.ModelConstants.DONT_HAVE_MENU;
+import static christmas.model.constants.ModelConstants.DONT_ORDER_ONLY_DRINK;
+import static christmas.model.constants.ModelConstants.DONT_OVER_20;
 
 public class OrderMenus {
     private final EnumMap<Menus, Integer> orderMenus;
@@ -13,6 +18,7 @@ public class OrderMenus {
     private OrderMenus(Map<String, Integer> orders) {
         this.orderMenus = new EnumMap<>(Menus.class);
         orderMenus(orders);
+        onlyDrinkOrder();
     }
 
     public static OrderMenus from(OrderMenusRequest orderMenusRequest) {
@@ -43,14 +49,34 @@ public class OrderMenus {
     }
 
     private void orderMenus(Map<String, Integer> orders) {
+        overOrderCount20(orders);
         orders.forEach(this::createOrders);
     }
 
     private void createOrders(String oneMenuName, int oneMenuCount) {
         Menus oneMenus = Menus.searchMenus(oneMenuName);
-        if(Objects.equals(oneMenus.getMenuName(), "없음")){
+        if (Objects.equals(oneMenus.getMenuName(), DONT_HAVE_MENU)) {
             throw new IllegalArgumentException();
         }
         orderMenus.put(oneMenus, oneMenuCount);
+    }
+
+    private void overOrderCount20(Map<String, Integer> orders) {
+        int totalCount = orders.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        if (totalCount > DONT_OVER_20) {
+            throw new IllegalArgumentException(ErrorMessage.IS_MENU.getErrorMessage());
+        }
+    }
+
+    private void onlyDrinkOrder() {
+        boolean hasNonDrinkOrder = orderMenus.entrySet().stream()
+                .anyMatch(entry -> !entry.getKey().getMenuType().equals(DONT_ORDER_ONLY_DRINK));
+
+        if (!hasNonDrinkOrder) {
+            throw new IllegalArgumentException(ErrorMessage.IS_MENU.getErrorMessage());
+        }
     }
 }

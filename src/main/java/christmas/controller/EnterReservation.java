@@ -12,6 +12,8 @@ import christmas.view.InputView;
 
 import java.util.Map;
 
+import static christmas.controller.Planner.retry;
+
 public class EnterReservation {
     private InputView inputView;
 
@@ -24,6 +26,7 @@ public class EnterReservation {
     }
 
     public Consumer run() {
+        inputView.plannerInit();
         ReservationDate reservationDate = enterReservationDate();
         OrderMenus orderMenus = enterOrderMenus();
         Promotion promotion = calculationPromotion(reservationDate, orderMenus);
@@ -32,13 +35,12 @@ public class EnterReservation {
     }
 
     private ReservationDate enterReservationDate() {
-        int date = inputView.enterDate();
+        int date = retry(() -> inputView.enterDate());
         return ReservationDate.from(ReservationDateRequest.from(date));
     }
 
     private OrderMenus enterOrderMenus() {
-        Map<String, Integer> orders = inputView.enterMenus();
-        return OrderMenus.from(OrderMenusRequest.from(orders));
+        return retry(() -> OrderMenus.from(OrderMenusRequest.from(inputView.enterMenus())));
     }
 
     private Promotion calculationPromotion(ReservationDate reservationDate, OrderMenus orderMenus) {

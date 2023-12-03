@@ -9,6 +9,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static christmas.model.constants.ModelConstants.CHRISTMAS_DATE;
+import static christmas.model.constants.ModelConstants.CHRISTMAS_DISCOUNT;
+import static christmas.model.constants.ModelConstants.CHRISTMAS_DISCOUNT_BASE;
+import static christmas.model.constants.ModelConstants.CHRISTMAS_UNIT;
+import static christmas.model.constants.ModelConstants.DONT_HAVE_MENU;
+import static christmas.model.constants.ModelConstants.PROMOTION;
+import static christmas.model.constants.ModelConstants.PROMOTION_MENU;
+import static christmas.model.constants.ModelConstants.PROMOTION_MENU_COUNT;
+import static christmas.model.constants.ModelConstants.PROMOTION_MINIMUM;
+import static christmas.model.constants.ModelConstants.SPECIAL_DAY;
+import static christmas.model.constants.ModelConstants.SPECIAL_DISCOUNT;
+import static christmas.model.constants.ModelConstants.SPECIAL_DISCOUNT_UNIT;
+import static christmas.model.constants.ModelConstants.WEEKDAY_DISCOUNT;
+import static christmas.model.constants.ModelConstants.WEEKDAY_DISCOUNT_MENU;
+import static christmas.model.constants.ModelConstants.WEEKEND_DISCOUNT;
+import static christmas.model.constants.ModelConstants.WEEKEND_DISCOUNT_MENU;
+import static christmas.model.constants.ModelConstants.WEEKEND_FIRST;
+import static christmas.model.constants.ModelConstants.WEEKEND_SECOND;
+import static christmas.model.constants.ModelConstants.WEEK_DISCOUNT_UNIT;
+
 public class Promotion {
     private final Map<String, Integer> promotion;
     private final EnumMap<Menus, Integer> givenPromotion;
@@ -51,38 +71,38 @@ public class Promotion {
     }
 
     private void isChristmasDiscount(int date) {
-        if(date > 25){
+        if(date > CHRISTMAS_DATE){
             return;
         }
-        promotion.put("크리스마스 디데이 할인", (date - 1) * 100 + 1_000);
+        promotion.put(CHRISTMAS_DISCOUNT, (date - 1) * CHRISTMAS_UNIT + CHRISTMAS_DISCOUNT_BASE);
     }
 
     private void isWeekDiscount(String dayOfWeek, OrderMenus orderMenus) {
-        if(Objects.equals(dayOfWeek, "FRIDAY") && Objects.equals(dayOfWeek, "SATURDAY")){
-            isHaveOrder("MainMenu", "주말 할인", orderMenus);
+        if(Objects.equals(dayOfWeek, WEEKEND_FIRST) && Objects.equals(dayOfWeek, WEEKEND_SECOND)){
+            isHaveOrder(WEEKEND_DISCOUNT_MENU, WEEKEND_DISCOUNT, orderMenus);
         }
-        isHaveOrder("Dessert", "평일 할인", orderMenus);
+        isHaveOrder(WEEKDAY_DISCOUNT_MENU, WEEKDAY_DISCOUNT, orderMenus);
     }
 
     private void isSpecialDiscount(ReservationDate date) {
-        if(date.getWeek().equals("SUNDAY") || date.getDayOfWeek() == 25){
-            promotion.put("특별 할인", 1_000);
+        if(date.getWeek().equals(SPECIAL_DAY) || date.getDayOfWeek() == CHRISTMAS_DATE){
+            promotion.put(SPECIAL_DISCOUNT, SPECIAL_DISCOUNT_UNIT);
         }
     }
 
     private void isHaveOrder(String menuType, String discountType,  OrderMenus orderMenus) {
         if(orderMenus.haveMenuType(menuType)){
-            this.promotion.put(discountType, orderMenus.menuTypeCount(menuType) * 2_023);
+            this.promotion.put(discountType, orderMenus.menuTypeCount(menuType) * WEEK_DISCOUNT_UNIT);
         }
     }
 
     private void isPromotion(OrderMenus orderMenus) {
-        if(orderMenus.getTotalPrice() > 120_000) {
-            promotion.put("증정 이벤트", Menus.searchMenus("샴페인").getMenuPrice());
-            this.givenPromotion.put(Menus.searchMenus("샴페인"), 1);
+        if(orderMenus.getTotalPrice() > PROMOTION_MINIMUM) {
+            promotion.put(PROMOTION, Menus.searchMenus(PROMOTION_MENU).getMenuPrice());
+            this.givenPromotion.put(Menus.searchMenus(PROMOTION_MENU), PROMOTION_MENU_COUNT);
             return;
         }
-        this.givenPromotion.put(Menus.searchMenus("없음"), 0);
+        this.givenPromotion.put(Menus.searchMenus(DONT_HAVE_MENU), 0);
     }
 
     private void givenBadge() {

@@ -4,6 +4,8 @@ import christmas.model.Consumer;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class Planner {
     private static Planner instance;
     private final InputView inputView;
@@ -23,6 +25,16 @@ public class Planner {
     public void run() {
         Consumer consumer = enterData();
         recheckData(consumer);
+    }
+
+    public static <T> T retry(Supplier<T> supplier) {
+        while(true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Consumer enterData() {
